@@ -49,17 +49,13 @@ PIP_PACKAGES=(
 )
 
 NODES=(
-  # WIP
-  # "https://github.com/cubiq/ComfyUI_essentials"
-  # "https://github.com/crystian/ComfyUI-Crystools"
-  # "https://github.com/rgthree/rgthree-comfy"
-  # "https://github.com/gseth/ControlAltAI-Nodes"
-
-  # Comfy Manager / Upscale Models
-  # Where do these get added?
-  # 4x_NMKD_Siax_200k
-  # 4x-AnimeSharp
-  # 4x_foolhardy_Remacri
+  "https://github.com/ltdrdata/ComfyUI-Manager"
+  "https://github.com/crystian/ComfyUI-Crystools"
+  "https://github.com/yolain/ComfyUI-Easy-Use"
+  "https://github.com/rgthree/rgthree-comfy"
+  "https://github.com/city96/ComfyUI-GGUF"
+  "https://github.com/Fannovel16/comfyui_controlnet_aux"
+  "https://github.com/gseth/ControlAltAI-Nodes"
 )
 
 WORKFLOWS=(
