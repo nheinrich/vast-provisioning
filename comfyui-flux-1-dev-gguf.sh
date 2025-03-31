@@ -8,10 +8,11 @@
 # https://cloud.vast.ai?ref_id=62897&template_id=f3a02e882f1644b8fac2327d195061cc
 
 # Setup
-# Set environment variables in vast prior to creating your instance.
+# Set environment variables in your vast account prior to creating your instance.
 # - HF_TOKEN: Hugging Face token for downloading models from Hugging Face.
 # - CIVITAI_TOKEN: Civitai token for downloading models from Civitai.
-# - PROVISIONING_SCRIPT: A link to this file on Github.
+# Create a personal template based on the link above and replace the provisioning script.
+# - PROVISIONING_SCRIPT: https://raw.githubusercontent.com/nheinrich/vast-provisioning/refs/heads/main/comfyui-flux-1-dev-gguf.sh
 
 # Custom Nodes
 # The original script mentions "Packages are installed after nodes so we can fix them".
@@ -23,6 +24,9 @@
 # [ ] Get custom node installation working during provisioning.
 # [ ] Integrate AWS CLI (using env vars) so I can easily offload output or models to S3.
 # [ ] Add cheatsheet (post-setup reminders, alias overview, hf dls, command explanations, s3 transfers)
+
+# Reference
+# https://docs.vast.ai/creating-a-custom-template#JqM6i
 
 
 # -------------------------------------------------------------------------------------------------
@@ -243,7 +247,7 @@ function provisioning_download() {
 # -------------------------------------------------------------------------------------------------
 # Custom
 
-function provisioning_aliases() {
+function provisioning_create_aliases() {
   alias ..='cd ..'
   alias ...='cd ../..'
   alias ....='cd ../../..'
