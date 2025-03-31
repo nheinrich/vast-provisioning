@@ -105,7 +105,7 @@ function provisioning_start() {
     provisioning_get_pip_packages
     provisioning_get_comfyui_packages
     provisioning_create_aliases
-    provisioning_cleanup
+    provisioning_finish
     provisioning_print_end
   else
     printf "\nHugging Face: invalid token, set the HF_TOKEN environment variable and try again.\n"
@@ -287,7 +287,7 @@ function provisioning_create_aliases() {
   alias xoutput="rm -rf ${COMFYUI_DIR}/output/* && echo 'Cleared all output in ${COMFYUI_DIR}/output/' && ls ${COMFYUI_DIR}/output/"
 }
 
-function provisioning_cleanup() {
+function provisioning_finish() {
   pip install --upgrade --no-cache-dir pip
 }
 
