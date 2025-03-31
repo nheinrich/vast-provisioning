@@ -133,7 +133,7 @@ function provisioning_get_nodes() {
   printf "\nDownloading custom nodes...\n"
   for repo in "${NODES[@]}"; do
     dir="${repo##*/}"
-    path="${COMFYUI_DIR}custom_nodes/${dir}"
+    path="${COMFYUI_DIR}/custom_nodes/${dir}"
     requirements="${path}/requirements.txt"
     if [[ -d $path ]]; then
       if [[ ${AUTO_UPDATE,,} != "false" ]]; then
