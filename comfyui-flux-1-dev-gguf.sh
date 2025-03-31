@@ -83,6 +83,12 @@ UNET_MODELS=(
   "https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q8_0.gguf"
 )
 
+UPSCALE_MODELS=(
+  "https://huggingface.co/gemasai/4x_NMKD-Siax_200k/resolve/main/4x_NMKD-Siax_200k.pth"
+  "https://huggingface.co/Kim2091/AnimeSharp/resolve/main/4x-AnimeSharp.pth"
+  "https://huggingface.co/FacehugmanIII/4x_foolhardy_Remacri/resolve/main/4x_foolhardy_Remacri.pth"
+)
+
 VAE_MODELS=(
   "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors"
 )
@@ -153,26 +159,46 @@ function provisioning_get_pip_packages() {
 }
 
 function provisioning_get_comfyui_packages() {
+  # Workflows
   workflows_dir="${COMFYUI_DIR}/user/default/workflows"
   mkdir -p "${workflows_dir}"
   provisioning_get_files \
     "${workflows_dir}" \
     "${WORKFLOWS[@]}"
+
+  # Checkpoints
   provisioning_get_files \
     "${COMFYUI_DIR}/models/checkpoints" \
     "${CHECKPOINT_MODELS[@]}"
+
+  # Clips
   provisioning_get_files \
     "${COMFYUI_DIR}/models/clip" \
     "${CLIP_MODELS[@]}"
+
+  # Controlnets
   provisioning_get_files \
     "${COMFYUI_DIR}/models/controlnet" \
     "${CONTROLNET_MODELS[@]}"
+
+  # Loras
   provisioning_get_files \
     "${COMFYUI_DIR}/models/loras" \
     "${LORA_MODELS[@]}"
+
+  # Unets
   provisioning_get_files \
     "${COMFYUI_DIR}/models/unet" \
     "${UNET_MODELS[@]}"
+
+  # Upscale models
+  upscale_models_dir="${COMFYUI_DIR}/models/upscale_models"
+  mkdir -p "${upscale_models_dir}"
+  provisioning_get_files \
+    "${COMFYUI_DIR}/models/upscale_models" \
+    "${UPSCALE_MODELS[@]}"
+
+  # VAE models
   provisioning_get_files \
     "${COMFYUI_DIR}/models/vae" \
     "${VAE_MODELS[@]}"
