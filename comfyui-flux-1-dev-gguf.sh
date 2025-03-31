@@ -20,7 +20,6 @@
 # installs the requirements.txt if it exists. Does this work for all repos? Need to review.
 
 # Next
-# [ ] Log into huggingface-cli and Civitai CLI to ensure you can download models.
 # [ ] Get custom node installation working during provisioning.
 # [ ] Integrate AWS CLI (using env vars) so I can easily offload output or models to S3.
 # [ ] Add cheatsheet (post-setup reminders, alias overview, hf dls, command explanations, s3 transfers)
@@ -131,6 +130,7 @@ function provisioning_get_apt_packages() {
 }
 
 function provisioning_get_nodes() {
+  printf "\nDownloading custom nodes...\n"
   for repo in "${NODES[@]}"; do
     dir="${repo##*/}"
     path="${COMFYUI_DIR}custom_nodes/${dir}"
@@ -161,6 +161,7 @@ function provisioning_get_pip_packages() {
 
 function provisioning_get_comfyui_packages() {
   # Workflows
+  printf "\nDownloading workflows...\n"
   workflows_dir="${COMFYUI_DIR}/user/default/workflows"
   mkdir -p "${workflows_dir}"
   provisioning_get_files \
@@ -168,31 +169,37 @@ function provisioning_get_comfyui_packages() {
     "${WORKFLOWS[@]}"
 
   # Checkpoints
+  printf "\nDownloading checkpoints...\n"
   provisioning_get_files \
     "${COMFYUI_DIR}/models/checkpoints" \
     "${CHECKPOINT_MODELS[@]}"
 
   # Clips
+  printf "\nDownloading clips...\n"
   provisioning_get_files \
     "${COMFYUI_DIR}/models/clip" \
     "${CLIP_MODELS[@]}"
 
   # Controlnets
+  printf "\nDownloading controlnets...\n"
   provisioning_get_files \
     "${COMFYUI_DIR}/models/controlnet" \
     "${CONTROLNET_MODELS[@]}"
 
   # Loras
+  printf "\nDownloading loras...\n"
   provisioning_get_files \
     "${COMFYUI_DIR}/models/loras" \
     "${LORA_MODELS[@]}"
 
   # Unets
+  printf "\nDownloading unets...\n"
   provisioning_get_files \
     "${COMFYUI_DIR}/models/unet" \
     "${UNET_MODELS[@]}"
 
   # Upscale models
+  printf "\nDownloading upscale models...\n"
   upscale_models_dir="${COMFYUI_DIR}/models/upscale_models"
   mkdir -p "${upscale_models_dir}"
   provisioning_get_files \
@@ -200,6 +207,7 @@ function provisioning_get_comfyui_packages() {
     "${UPSCALE_MODELS[@]}"
 
   # VAE models
+  printf "\nDownloading vaes...\n"
   provisioning_get_files \
     "${COMFYUI_DIR}/models/vae" \
     "${VAE_MODELS[@]}"
@@ -271,20 +279,29 @@ function provisioning_download() {
 # Custom
 
 function provisioning_create_aliases() {
-  alias ..='cd ..'
-  alias ...='cd ../..'
-  alias ....='cd ../../..'
-  alias ls='ls -l --color=auto'
-  alias comfy="cd ${COMFYUI_DIR}; ls"
-  alias outputs="cd ${COMFYUI_DIR}/output; ls"
-  alias models="cd ${COMFYUI_DIR}/models; ls"
-  alias checkpoints="cd ${COMFYUI_DIR}/models/checkpoints; ls"
-  alias clips="cd ${COMFYUI_DIR}/models/clip; ls"
-  alias controlnets="cd ${COMFYUI_DIR}/models/controlnet; ls"
-  alias loras="cd ${COMFYUI_DIR}/models/loras; ls"
-  alias unets="cd ${COMFYUI_DIR}/models/unet; ls"
-  alias vaes="cd ${COMFYUI_DIR}/models/vae; ls"
-  alias xoutput="rm -rf ${COMFYUI_DIR}/output/* && echo 'Cleared all output in ${COMFYUI_DIR}/output/' && ls ${COMFYUI_DIR}/output/"
+  printf "\nCreating aliases...\n"
+
+  aliases="
+    # Custom aliases
+    alias ..='cd ..'
+    alias ...='cd ../..'
+    alias ....='cd ../../..'
+    alias ls='ls -laF --color=auto'
+    alias comfy='cd /workspace/ComfyUI/; ls'
+    alias outputs='cd /workspace/ComfyUI/output; ls'
+    alias models='cd /workspace/ComfyUI/models; ls'
+    alias checkpoints='cd /workspace/ComfyUI/models/checkpoints; ls'
+    alias clips='cd /workspace/ComfyUI/models/clip; ls'
+    alias controlnets='cd /workspace/ComfyUI/models/controlnet; ls'
+    alias loras='cd /workspace/ComfyUI/models/loras; ls'
+    alias unets='cd /workspace/ComfyUI/models/unet; ls'
+    alias upscales='cd /workspace/ComfyUI/models/upscale_models; ls'
+    alias vaes='cd /workspace/ComfyUI/models/vae; ls'
+    alias xoutput='rm -rf /workspace/ComfyUI/output/* && echo \"Cleared all output in /workspace/ComfyUI/output/\" && ls /workspace/ComfyUI/output/'
+  "
+
+  echo "$aliases" >> ~/.bashrc
+  source ~/.bashrc
 }
 
 function provisioning_finish() {
