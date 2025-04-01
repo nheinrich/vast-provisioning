@@ -60,12 +60,14 @@ NODES=(
   "https://github.com/city96/ComfyUI-GGUF"
   "https://github.com/Fannovel16/comfyui_controlnet_aux"
   "https://github.com/gseth/ControlAltAI-Nodes"
+  "https://github.com/sipherxyz/comfyui-art-venture"
 )
 
 WORKFLOWS=(
   "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-v1-dev-gguf.json"
   "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img-control-net-union.json"
   "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img-upscale-basic.json"
+  "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img-upscale.json"
 )
 
 CHECKPOINT_MODELS=(
