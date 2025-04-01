@@ -14,13 +14,7 @@
 # Create a personal template based on the link above and replace the provisioning script.
 # - PROVISIONING_SCRIPT: https://raw.githubusercontent.com/nheinrich/vast-provisioning/refs/heads/main/comfyui-flux-1-dev-gguf.sh
 # Github caches raw files for 5 minutes so if you make changes wait for the cache to clear.
-# The template may need to be re-saved after this script is updated, it doesn't always seem to update.
-# The template takes up ~25GB of space, partition accordingly.
-
-# Next
-# [ ] Integrate AWS CLI (using env vars) so I can easily offload output or models to S3.
-# [ ] Replace the default workflow with a custom one.
-# [ ] Add cheatsheet (post-setup reminders, alias overview, hf dls, command explanations, s3 transfers)
+# The template takes up ~25GB of space.
 
 # Instructions
 # 1. Create a new instance using the template.
@@ -29,6 +23,11 @@
 # 4. The default workflow won't work as we didn't download the models for it.
 # 5. Load a workflow from the workflows folder in the sidebar.
 # 6. Cook!
+
+# Tasks
+# [ ] Replace the default workflow with a custom one.
+# [ ] Add cheatsheet (post-setup reminders, alias overview, hf dls, command explanations, s3 transfers)
+
 
 # Reference
 # https://docs.vast.ai/creating-a-custom-template#JqM6i
