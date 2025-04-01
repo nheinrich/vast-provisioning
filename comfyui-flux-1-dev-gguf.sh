@@ -108,7 +108,6 @@ function provisioning_start() {
     provisioning_get_pip_packages
     provisioning_get_comfyui_packages
     provisioning_create_aliases
-    provisioning_after
     provisioning_print_end
   else
     printf "\nHugging Face: invalid token, set the HF_TOKEN environment variable and try again.\n"
