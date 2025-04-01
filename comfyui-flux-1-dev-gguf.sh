@@ -290,10 +290,10 @@ function provisioning_download() {
 
 function provisioning_get_aws_cli() {
   printf "\nDownloading AWS CLI...\n"
-  mkdir -p /workspace/.aws
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/workspace/.aws/awscliv2.zip"
-  unzip /workspace/.aws/awscliv2.zip
-  /workspace/.aws/aws/install
+  mkdir -p /workspace/aws
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/workspace/aws/awscliv2.zip"
+  unzip /workspace/aws/awscliv2.zip
+  /workspace/aws/install
   printf "\nAWS CLI installed successfully, ready for configuration.\n"
 }
 
