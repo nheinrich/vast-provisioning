@@ -101,7 +101,6 @@ VAE_MODELS=(
 
 function provisioning_start() {
   provisioning_print_header
-  provisioning_before
 
   if provisioning_has_valid_hf_token; then
     provisioning_get_apt_packages
@@ -308,14 +307,6 @@ function provisioning_create_aliases() {
 
   echo "$aliases" >> ~/.bashrc
   source ~/.bashrc
-}
-
-function provisioning_before() {
-  pip install --upgrade --no-cache-dir pip
-}
-
-function provisioning_after() {
-
 }
 
 
