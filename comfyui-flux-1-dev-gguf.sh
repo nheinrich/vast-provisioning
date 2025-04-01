@@ -61,6 +61,7 @@ NODES=(
   "https://github.com/Fannovel16/comfyui_controlnet_aux"
   "https://github.com/gseth/ControlAltAI-Nodes"
   "https://github.com/sipherxyz/comfyui-art-venture"
+  "https://github.com/kijai/ComfyUI-Florence2"
 )
 
 WORKFLOWS=(
@@ -68,6 +69,7 @@ WORKFLOWS=(
   "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img-control-net-union.json"
   "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img-upscale-basic.json"
   "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img-upscale.json"
+  "https://raw.githubusercontent.com/nheinrich/comfyui-workflows/refs/heads/main/flux/flux-img2txt2img.json"
 )
 
 CHECKPOINT_MODELS=(
