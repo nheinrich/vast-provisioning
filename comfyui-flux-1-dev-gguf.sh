@@ -13,16 +13,20 @@
 # - CIVITAI_TOKEN: Civitai token for downloading models from Civitai.
 # Create a personal template based on the link above and replace the provisioning script.
 # - PROVISIONING_SCRIPT: https://raw.githubusercontent.com/nheinrich/vast-provisioning/refs/heads/main/comfyui-flux-1-dev-gguf.sh
-
-# Custom Nodes
-# The original script mentions "Packages are installed after nodes so we can fix them".
-# I assume this is related to dependencies? Right now `provisioning_get_nodes` pulls the repos and
-# installs the requirements.txt if it exists. Does this work for all repos? Need to review.
+# The template may need to be re-saved after this script is updated, it doesn't always seem to update.
 
 # Next
-# [ ] Get custom node installation working during provisioning.
 # [ ] Integrate AWS CLI (using env vars) so I can easily offload output or models to S3.
+# [ ] Replace the default workflow with a custom one.
 # [ ] Add cheatsheet (post-setup reminders, alias overview, hf dls, command explanations, s3 transfers)
+
+# Instructions
+# 1. Create a new instance using the template.
+# 2. Open the instance in your browser.
+# 3. Open ComfyUI in your browser.
+# 4. The default workflow won't work as we didn't download the models for it.
+# 5. Load a workflow from the workflows folder in the sidebar.
+# 6. Cook!
 
 # Reference
 # https://docs.vast.ai/creating-a-custom-template#JqM6i
@@ -97,6 +101,7 @@ VAE_MODELS=(
 
 function provisioning_start() {
   provisioning_print_header
+  provisioning_before
 
   if provisioning_has_valid_hf_token; then
     provisioning_get_apt_packages
@@ -104,7 +109,7 @@ function provisioning_start() {
     provisioning_get_pip_packages
     provisioning_get_comfyui_packages
     provisioning_create_aliases
-    provisioning_finish
+    provisioning_after
     provisioning_print_end
   else
     printf "\nHugging Face: invalid token, set the HF_TOKEN environment variable and try again.\n"
@@ -288,6 +293,7 @@ function provisioning_create_aliases() {
     alias ....='cd ../../..'
     alias ls='ls -laF --color=auto'
     alias comfy='cd /workspace/ComfyUI/; ls'
+    alias nodes='cd /workspace/ComfyUI/custom_nodes; ls'
     alias outputs='cd /workspace/ComfyUI/output; ls'
     alias models='cd /workspace/ComfyUI/models; ls'
     alias checkpoints='cd /workspace/ComfyUI/models/checkpoints; ls'
@@ -304,8 +310,12 @@ function provisioning_create_aliases() {
   source ~/.bashrc
 }
 
-function provisioning_finish() {
+function provisioning_before() {
   pip install --upgrade --no-cache-dir pip
+}
+
+function provisioning_after() {
+
 }
 
 
