@@ -14,7 +14,7 @@
 # Create a personal template based on the link above and replace the provisioning script.
 # - PROVISIONING_SCRIPT: https://raw.githubusercontent.com/nheinrich/vast-provisioning/refs/heads/main/comfyui-flux-1-dev-gguf.sh
 # The template may need to be re-saved after this script is updated, it doesn't always seem to update.
-# The template takes up ~8GB of space, partition accordingly.
+# The template takes up ~25GB of space, partition accordingly.
 
 # Next
 # [ ] Integrate AWS CLI (using env vars) so I can easily offload output or models to S3.
