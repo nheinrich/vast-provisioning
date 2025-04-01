@@ -13,6 +13,7 @@
 # - CIVITAI_TOKEN: Civitai token for downloading models from Civitai.
 # Create a personal template based on the link above and replace the provisioning script.
 # - PROVISIONING_SCRIPT: https://raw.githubusercontent.com/nheinrich/vast-provisioning/refs/heads/main/comfyui-flux-1-dev-gguf.sh
+# Github caches raw files for 5 minutes so if you make changes wait for the cache to clear.
 # The template may need to be re-saved after this script is updated, it doesn't always seem to update.
 # The template takes up ~25GB of space, partition accordingly.
 
