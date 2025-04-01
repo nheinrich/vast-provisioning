@@ -112,6 +112,7 @@ function provisioning_start() {
     provisioning_get_nodes
     provisioning_get_pip_packages
     provisioning_get_comfyui_packages
+    provisioning_get_aws_cli
     provisioning_create_aliases
     provisioning_print_end
   else
@@ -285,6 +286,15 @@ function provisioning_download() {
 
 # -------------------------------------------------------------------------------------------------
 # Custom
+
+function provisioning_get_aws_cli() {
+  printf "\nDownloading AWS CLI...\n"
+  mkdir -p /workspace/.aws
+  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/workspace/.aws/awscliv2.zip"
+  unzip /workspace/.aws/awscliv2.zip
+  /workspace/.aws/aws/install
+  printf "\nAWS CLI installed successfully, ready for configuration.\n"
+}
 
 function provisioning_create_aliases() {
   printf "\nCreating aliases...\n"
